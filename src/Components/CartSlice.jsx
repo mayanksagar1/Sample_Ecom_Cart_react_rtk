@@ -32,6 +32,8 @@ const CartSlice = createSlice({
       const itemToDecrease = state.cartItems.find((item) => item.id === action.payload);
       if (itemToDecrease && itemToDecrease.quantity > 1) {
         itemToDecrease.quantity -= 1;
+      } else if (itemToDecrease && itemToDecrease.quantity === 1) {
+        CartSlice.caseReducers.removeItemFromCart(state, action);
       }
     },
   },
